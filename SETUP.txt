@@ -1,0 +1,55 @@
+# LinkedIn Email Finder Setup Guide
+
+1. **Clone or Download Project Files**
+   - Ensure you have the following files in your project directory:
+     - linkedin_email_finder.py
+     - SETUP.txt
+     - (Optionally, populate the .env file as described below.)
+
+2. **Set Up a Virtual Environment (Recommended)**
+   - Open your terminal and navigate to the project directory.
+   - Create a virtual environment:
+     On macOS/Linux:
+       python3 -m venv venv
+     On Windows:
+       python -m venv venv
+   - Activate the virtual environment:
+     On macOS/Linux:
+       source venv/bin/activate
+     On Windows:
+       venv\Scripts\activate
+
+3. **Install Dependencies**
+   - Install the required Python libraries:
+     pip install playwright agentql python-dotenv psycopg2-binary
+   - Install the browsers for Playwright:
+     playwright install
+
+4. **Configure Environment Variables**
+   - Create a file named `.env` in the project root.
+   - Add the following environment variables (update the values as needed):
+     
+     LINKEDIN_EMAIL=your_linkedin_email
+     LINKEDIN_PASSWORD=your_linkedin_password
+     AGENTQL_API_KEY=your_agentql_api_key
+
+     PG_HOST=your_postgres_host         # e.g., localhost
+     PG_PORT=your_postgres_port         # e.g., 5432
+     PG_USER=your_postgres_username
+     PG_PASSWORD=your_postgres_password
+     PG_DATABASE=your_postgres_database
+
+5. **Prepare Your PostgreSQL Database**
+   - Ensure that your PostgreSQL server is running.
+   - The script will automatically create the required tables (companies & employees) if they don't exist.
+
+6. **Run the Script**
+   - With your virtual environment activated, run:
+     python linkedin_email_finder.py
+   - The script will log into LinkedIn, scrape the sample employee profiles, and store the data in your database.
+
+7. **Notes**
+   - The sample companies and employee profile URLs in the script are placeholders.
+     Update them with real LinkedIn profile URLs as needed.
+   - For production, consider running the browser in headless mode (set headless=True in the script).
+   - Handle any additional steps (such as CAPTCHA or two-factor authentication) as required by LinkedIn. 
